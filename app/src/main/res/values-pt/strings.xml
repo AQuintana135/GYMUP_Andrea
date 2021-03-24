@@ -30,4 +30,44 @@
     <string name="balance">Balance</string>
     <string name="estado_de_cuenta">Estado de Cuenta</string>
     <string name="salud_y_nutrici_n">Salud y Nutrición</string>
+
+    <string name="email">E-mail</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Ingresar</string>
+    <string name="gymList">Listado de Gimnasios</string>
+    <string name="aboutUs">Nosotros</string>
+    <string name="services">Servicios</string>
+    <string name="contact">Contacto</string>
+    <string name="users">Usuarios</string>
+    <string name="userProfile">Perfil del Usuario</string>
+    <string name="nutrition">Salud y Nutrición</string>
+
+    <!-- Para formulario de registro-->
+    <string name="register">Registro</string>
+    <string name="register2">Registrarse</string>
+    <string name="userRegister">Registro de Usuario</string>
+    <string name="userName">Nombre de Usuario</string>
+    <string name="name">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="fullName">Nombre Completo</string>
+    <string name="document">Documento de Identidad</string>
+    <string name="phoneNumber">Teléfono</string>
+    <string name="cellphone">Celular</string>
+    <string name="address">Dirección</string>
+    <string name="city">Ciudad</string>
+    <string name="postalCode">Código Postal</string>
+    <string name="country">País</string>
+    <string name="height">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="repeatPassword">Repita la Contraseña</string>
+    <string name="gender">Sexo</string>
+    <string name="status">Estado</string>
+    <string name="comments">Comentarios</string>
+    <string-array name="genderList">
+        <item>Hombre</item>
+        <item>Mujer</item>
+        <item>Otro</item>
+    </string-array>
+
+
 </resources>
