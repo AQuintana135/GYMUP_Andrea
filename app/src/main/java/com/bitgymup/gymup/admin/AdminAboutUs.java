@@ -29,12 +29,12 @@ import org.json.JSONObject;
 
 import static com.bitgymup.gymup.admin.AdminHome.redirectActivity;
 
-public class AdminOffers extends AppCompatActivity {
-    private EditText promo_titulo, promo_contenido;
+public class AdminAboutUs extends AppCompatActivity {
+    private EditText content_mision, content_vision;
     private TextView gimnasio_nombre;
     private Button btnSubmit;
-    String username;
     private String idgim;
+    String username;
 
     ProgressDialog progreso;
 
@@ -46,12 +46,11 @@ public class AdminOffers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_offers);
+        setContentView(R.layout.activity_admin_about_us);
+
         drawerLayout = findViewById(R.id.drawer_layout);
-
-
-        promo_titulo = (EditText) findViewById(R.id.promo_titulo);
-        promo_contenido = (EditText) findViewById(R.id.promo_contenido);
+        content_mision = (EditText) findViewById(R.id.content_mision);
+        content_vision = (EditText) findViewById(R.id.content_vision);
         gimnasio_nombre  = (TextView) findViewById(R.id.gimnasio_nombre);
 
         username = getUserLogin("username");
@@ -59,16 +58,15 @@ public class AdminOffers extends AppCompatActivity {
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         request = Volley.newRequestQueue(this);
 
-        //username = "nanoman07";
         cargarWSgimnasio(username);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(promo_titulo.getText().toString().equals("") || promo_titulo.getText().toString().equals(null) ){
-                    Toast.makeText(getApplicationContext(),"Campo titulo no debe estar varcio", Toast.LENGTH_LONG).show();
-                }else if(TextUtils.isEmpty(promo_contenido.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Campo contenido no debe estar varcio", Toast.LENGTH_LONG).show();
+                if(content_mision.getText().toString().equals("") || content_mision.getText().toString().equals(null) ){
+                    Toast.makeText(getApplicationContext(),"Campo misión no debe estar varcio", Toast.LENGTH_LONG).show();
+                }else if(TextUtils.isEmpty(content_vision.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"Campo visión no debe estar varcio", Toast.LENGTH_LONG).show();
                 }else{
                     cargarWebService();
                 }
@@ -80,7 +78,7 @@ public class AdminOffers extends AppCompatActivity {
     }
 
     private String getUserLogin(String key) {
-        SharedPreferences sharedPref = getSharedPreferences("user_login",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("user_login", Context.MODE_PRIVATE);
         String username = sharedPref.getString(key,"");
         return username;
     }
@@ -94,8 +92,8 @@ public class AdminOffers extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         //progreso.hide();
                         //Toast.makeText(getApplicationContext(),"ca"+ response.toString(), Toast.LENGTH_LONG).show();
-                        promo_titulo.setText("");
-                        promo_contenido.setText("");
+                        content_mision.setText("");
+                        content_vision.setText("");
                         //Parseo el json que viene por WS y me quedo solo con el detail y el atributo nombre
                         JSONArray json=response.optJSONArray("detail");
                         JSONObject jsonObject=null;
@@ -120,17 +118,15 @@ public class AdminOffers extends AppCompatActivity {
         });
         request.add(jsonObjectRequest);
     }
-
-
     private void cargarWebService() {
 
-        progreso= new ProgressDialog(AdminOffers.this);
+        progreso= new ProgressDialog(AdminAboutUs.this);
         progreso.setMessage("Cargando...");
         progreso.show();
 
-        String url = "http://gymup.zonahosting.net/gymphp/PromotionsWS.php?gim="+idgim+
-                "&title="+promo_titulo.getText().toString()+
-                "&promotion="+promo_contenido.getText().toString();
+        String url = "http://gymup.zonahosting.net/gymphp/AboutusWS.php?gim="+idgim+
+                "&contentsmision="+content_mision.getText().toString()+
+                "&contentsvision="+content_vision.getText().toString();
 
         url = url.replace(" ","%20");
 
@@ -141,8 +137,8 @@ public class AdminOffers extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         progreso.hide();
                         Toast.makeText(getApplicationContext(),"Exito al guardar :) "+ response.toString(), Toast.LENGTH_LONG).show();
-                        promo_titulo.setText("");
-                        promo_contenido.setText("");
+                        content_mision.setText("");
+                        content_vision.setText("");
 
 
                     }
@@ -159,6 +155,7 @@ public class AdminOffers extends AppCompatActivity {
 
     }
 
+
     public void ClickMenu(View view){
         //Abrir el drawer
         AdminHome.openDrawer(drawerLayout);
@@ -170,8 +167,11 @@ public class AdminOffers extends AppCompatActivity {
     }
 
 
-
     /*Inicio de los enlaces*/
+    public void ClickHome(View view){
+        //Redirección de la activity to Home
+        redirectActivity(this,AdminHome.class);
+    }
     public void ClickAgenda(View view){
         //recreamos la actividad!
         recreate();
@@ -181,16 +181,16 @@ public class AdminOffers extends AppCompatActivity {
         redirectActivity(this,AdminNews.class);
     }
     public void ClickPromo(View view){
-        //recreamos la actividad!
-        recreate();
+        //Redirección de la activity a AboutUs
+        redirectActivity(this,AdminOffers.class);
     }
     public void ClickServicios(View view){
         //Redirección de la activity a AboutUs
         redirectActivity(this,AdminServices.class);
     }
     public void ClickMyProfile(View view){
-        //Redirección de la activity a AboutUs
-        redirectActivity(this,AdminProfile.class);
+        //recreamos la actividad!
+        recreate();
     }
     public void ClickClientes(View view){
         //Redirección de la activity a AboutUs
@@ -202,6 +202,7 @@ public class AdminOffers extends AppCompatActivity {
         //Cerrar APP
         AdminHome.salir(this);
     }
+
     public void CAbout(View view){
         //Redirección de la activity to Home
         redirectActivity(this,AdminAboutUs.class);
@@ -212,4 +213,7 @@ public class AdminOffers extends AppCompatActivity {
         //Close drawer
         AdminHome.closeDrawer(drawerLayout);
     }
+
+
+
 }

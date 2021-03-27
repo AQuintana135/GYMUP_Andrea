@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GYMUP!</string>
-    <string name="Hola">Hello</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -17,46 +16,30 @@
     <string name="register">Register</string>
     <string name="register2">Register</string>
     <string name="userRegister">User Register</string>
-    <string name="userName">User Name</string>
-    <string name="name">Name</string>
-    <string name="lastName">Last Name</string>
     <string name="fullName">Full Name</string>
     <string name="document">Document</string>
-    <string name="phoneNumber">Phone Number</string>
     <string name="cellphone">Cellphone Number</string>
     <string name="address">Address</string>
-    <string name="city">City</string>
-    <string name="postalCode">Postal Code</string>
-    <string name="country">Country</string>
     <string name="height">Height</string>
     <string name="weight">Weight</string>
     <string name="repeatPassword">Repeat Password</string>
     <string name="gender">Gender</string>
-    <string name="status">Status</string>
-    <string name="comments">Comments</string>
-    <string-array name="genderList">
-        <item>Male</item>
-        <item>Female</item>
-        <item>Other</item>
-    </string-array>
-
-
     <string name="loginUser">Inicio de sesión</string>
-    <string name="username">User Name</string>
-    <string name="IngresarUsuario">Enter</string>
-    <string name="notienecuenta"><b>Register here</b></string>
-    <string name="agenda">Calendar</string>
-    <string name="clientes">Clients</string>
-    <string name="notificaciones">Notifications</string>
-    <string name="servicios">Services</string>
-    <string name="mi_perfil">My Profile</string>
-    <string name="nombregimnasio">Gym Name</string>
-    <string name="direccionprincipal">Main Address</string>
-    <string name="telefonoprincipal">Main Telephone</string>
-    <string name="telMovil">Cellphone</string>
-    <string name="Email">E-mail</string>
-    <string name="Ciudad">City</string>
-    <string name="Estado">State / ?</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="IngresarUsuario">Ingresar</string>
+    <string name="notienecuenta">¿No tienes registro? <b>Registrate aquí</b></string>
+    <string name="agenda">Agenda</string>
+    <string name="clientes">Clientes</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="servicios">Servicios</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="nombregimnasio">Nombre del Gimnasio</string>
+    <string name="direccionprincipal">Dirección Principal</string>
+    <string name="telefonoprincipal">Teléfono Principal</string>
+    <string name="telMovil">Teléfono móvil</string>
+    <string name="Email">Correo electrónico</string>
+    <string name="Ciudad">Ciudad</string>
+    <string name="Estado">Estado / Departamento</string>
     <string name="RUT">RUT / Registro Mercantil</string>
     <string name="NombrePropietario">Nombre del Propietario</string>
     <string name="MovilPropietario">Móvil Propietario</string>
@@ -69,7 +52,13 @@
     <string name="balance">Balance</string>
     <string name="estado_de_cuenta">Estado de Cuenta</string>
     <string name="salud_y_nutrici_n">Salud y Nutrición</string>
-
+    <string name="mensaje_a_ser_enviado">Mensaje a ser enviado</string>
+    <string name="t_tulo_o_asunto">Título o Asunto</string>
+    <string-array name="genderList">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 
     <!-- Prueba para servicios -->
     <string-array name="servicesList">
