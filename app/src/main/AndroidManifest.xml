@@ -14,7 +14,13 @@
         android:roundIcon="@mipmap/logo_circular"
         android:supportsRtl="true"
         android:theme="@style/Theme.GYMUP">
-        <activity android:name=".NewUser"></activity>
+        <activity android:name=".users.NewUser">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".users.UserSaludNutricion" />
         <activity android:name=".users.UserPromo" />
         <activity android:name=".users.UserSalud" />
@@ -37,13 +43,11 @@
         <activity android:name=".Contact" />
         <activity android:name=".Services" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".GymList" />
-        <activity android:name=".LogIn">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".GymList" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".LogIn">
+
         </activity>
         <activity android:name=".MainActivity" />
 

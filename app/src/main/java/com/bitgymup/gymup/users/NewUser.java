@@ -1,14 +1,19 @@
-package com.bitgymup.gymup;
+package com.bitgymup.gymup.users;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,49 +24,66 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bitgymup.gymup.GymList;
+import com.bitgymup.gymup.R;
 
 import org.json.JSONObject;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 public class NewUser extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private EditText etName, etSurname, etDocument, etAddress, etCity, etPostalcode, etCountry, etPhone, etEmail, etMobile, etGender, etHeight, etWeight, etcUsername, etcPassword, etStatus, etComments;
-    private Button btnSubmit;
+    private EditText etName, etSurname, etDocument, etAddress, etCity, etPostalcode, etCountry, etPhone, etEmail, etMobile, etHeight, etWeight, etcUsername, etcPassword, etStatus, etComments, etBirthday, etGender;
+    private String selectedGender, selectedDate, selected_spinner;
+    private Button btnSubmit, dateButton;
+    private DatePickerDialog datePickerDialog;
 
     ProgressDialog progreso;
 
     private RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
 
+
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
+        initDatePicker();
+        dateButton = findViewById(R.id.btnSelectDate);
+        dateButton.setText(getTodaysDate());
+        //Para elegir la fecha
+
 
         //Code de los spinners para combo
-
         Spinner spinner = findViewById(R.id.spnGender);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genderList, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        selected_spinner = spinner.getSelectedItem().toString();
+ //       selected_spinner = spinner.getSelectedItem().toString();
 
-        etName = (EditText) findViewById(R.id.etName);
-        etSurname = (EditText) findViewById(R.id.etSurname);
-        etDocument = (EditText) findViewById(R.id.etDocument);
-        etAddress = (EditText) findViewById(R.id.etAddress);
-        etCity = (EditText) findViewById(R.id.etCity);
-        etPostalcode = (EditText) findViewById(R.id.etPostalcode);
-        etCountry = (EditText) findViewById(R.id.etCountry);
-        etPhone = (EditText) findViewById(R.id.etPhone);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etMobile = (EditText) findViewById(R.id.etMobile);
-    //    etGender = (EditText) findViewById(R.id.etGender);
-        etHeight = (EditText) findViewById(R.id.etHeight);
-        etWeight = (EditText) findViewById(R.id.etWeight);
-        etcUsername = (EditText) findViewById(R.id.etcUsername);
-        etcPassword = (EditText) findViewById(R.id.etcPassword);
-        etStatus = (EditText) findViewById(R.id.etStatus);
-        etComments = (EditText) findViewById(R.id.etComments);
+
+        etName       = findViewById(R.id.etName);
+        etSurname    = findViewById(R.id.etSurname);
+        etDocument   = findViewById(R.id.etDocument);
+        etHeight     = findViewById(R.id.etHeight);
+        etWeight     = findViewById(R.id.etWeight);
+        etcUsername  = findViewById(R.id.etcUsername);
+        etcPassword  = findViewById(R.id.etcPassword);
+        etEmail      = findViewById(R.id.etEmail);
+        etMobile     = findViewById(R.id.etMobile);
+        etPostalcode = findViewById(R.id.etPostalcode);
+        etCountry    = findViewById(R.id.etCountry);
+        etPhone      = findViewById(R.id.etPhone);
+        etAddress    = findViewById(R.id.etAddress);
+        etCity       = findViewById(R.id.etCity);
+        etGender     = findViewById(R.id.etGender);
+        etStatus     = findViewById(R.id.etStatus);
+        etComments   = findViewById(R.id.etComments);
 
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         request = Volley.newRequestQueue(this);
@@ -69,9 +91,12 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarWebService();
-            }
+                    //cargarWebService();
 
+                    Intent selectGym = new Intent(getApplicationContext(), GymList.class);
+                    startActivity(selectGym);
+
+            }
 
             private void cargarWebService() {
 
@@ -89,13 +114,13 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
                         "&phone="+etPhone.getText().toString()+
                         "&email="+etEmail.getText().toString()+
                         "&mobile="+etMobile.getText().toString()+
-                        "&gender="+etGender.getText().toString()+
+                        "&gender="+selected_spinner.toString()+
                         "&height="+etHeight.getText().toString()+
                         "&weight="+etWeight.getText().toString()+
                         "&cusername="+etcUsername.getText().toString()+
                         "&cpassword="+etcPassword.getText().toString()+
                         "&status="+etStatus.getText().toString()+
-                        "&comments="+etComments.getText().toString();
+                        "&comments="+selectedDate.toString();
 
                 jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null,
                         new Response.Listener<JSONObject>() {
@@ -120,7 +145,7 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
                                 etcPassword.setText(" ");
                                 etStatus.setText(" ");
                                 etComments.setText(" ");
-
+                                etBirthday.setText(" ");
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -135,19 +160,96 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
 
             }
 
-
         });
 
     }
 
+    //para el Spinner
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String etGender = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), etGender, Toast.LENGTH_SHORT).show();
+    public void onItemSelected(AdapterView<?> adapter, View view, int position, long l) {
+
+        String selectedGender = adapter.getItemAtPosition(position).toString();
+        Toast.makeText(adapter.getContext(), selectedGender, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    //Para la seleccion de fecha
+    private String getTodaysDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                {
+                    month = month + 1;
+                    String date = makeDateString(day, month, year);
+                    dateButton.setText(date);
+                    selectedDate = year + "-" + month + "-" + day;
+                }
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+    }
+
+    private String makeDateString(int day, int month, int year)
+    {
+        return getMonthFormat(month) + " " + day + " " + year;
+    }
+
+    private String getMonthFormat(int month)
+    {
+        if(month == 1)
+            return "ENE";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "ABR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AGO";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DIC";
+
+        //por si falla
+        return "ENE";
+    }
+
+    public void openDatePicker(View view)
+    {
+        datePickerDialog.show();
     }
 }
