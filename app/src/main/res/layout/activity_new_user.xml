@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -54,6 +54,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/etBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/selectDate"/>
+            <Button
+                android:id="@+id/btnSelectDate"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                style="?spinnerStyle"
+                app:layout_constraintTop_toBottomOf="@+id/etBirthday"
+                android:onClick="openDatePicker"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
             <EditText
                 android:id="@+id/etAddress"
                 android:layout_width="match_parent"
@@ -82,7 +103,7 @@
                 android:id="@+id/etPostalcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
+                android:inputType="number"
                 android:hint="@string/postalCode"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +133,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp">
             <EditText
                 android:id="@+id/etEmail"
@@ -134,6 +155,18 @@
                 android:hint="@string/cellphone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/etGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/gender"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Spinner
             android:id="@+id/spnGender"
             android:layout_width="match_parent"
@@ -146,7 +179,7 @@
             android:layout_marginTop="20dp">
             <EditText
                 android:id="@+id/etHeight"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="@string/height"/>
@@ -223,8 +256,6 @@
                 android:inputType="text"
                 android:hint="@string/comments"/>
         </com.google.android.material.textfield.TextInputLayout>
-
-
         <!-- Btn - Guardar -->
         <Button
             android:id="@+id/btnSubmit"
@@ -234,4 +265,5 @@
             android:text="@string/register2" />
 
     </LinearLayout>
+
 </ScrollView>

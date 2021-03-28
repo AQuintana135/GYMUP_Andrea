@@ -12,6 +12,23 @@
     <string name="userProfile">User Profile</string>
     <string name="nutrition">Nutrition and Health</string>
 
+    <!-- Para AdminServices-->
+    <string name="services_tipo">Select a service type:</string>
+    <string name="Hola">Hello</string>
+
+    <!-- Para AdminAbout-->
+    <string name="about_gim">Gym Name</string>
+    <string name="about_mision">Mission: </string>
+    <string name="about_vision">Vision: </string>
+    <string name="about_content_mision">Add information about mission</string>
+    <string name="about_content_vision">Add information about vision</string>
+
+    <!-- Para AdminOffers-->
+    <string name="offer_gim">Aca va el nombre del gim</string>
+    <string name="offer_title">Title</string>
+    <string name="offer_content">Content</string>
+    <string name="offer_button">Save</string>
+
     <!-- Para formulario de registro-->
     <string name="register">Register</string>
     <string name="register2">Register</string>
@@ -20,12 +37,25 @@
     <string name="document">Document</string>
     <string name="cellphone">Cellphone Number</string>
     <string name="address">Address</string>
-    <string name="height">Height</string>
+    <string name="height">Height (cm)</string>
     <string name="weight">Weight</string>
     <string name="repeatPassword">Repeat Password</string>
     <string name="gender">Gender</string>
-    <string name="loginUser">Inicio de sesión</string>
+    <string name="loginUser">Log in</string>
     <string name="username">Nombre de usuario</string>
+    <string name="name">Name</string>
+    <string name="lastName">Last name</string>
+    <string name="city">City</string>
+    <string name="postalCode">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="userName">User Name</string>
+    <string name="status">Status</string>
+    <string name="comments">Comments</string>
+    <string name="birthday">Date of Birth</string>
+    <string name="selectDate">Date of Birth</string>
+    <string name="selectGym">Select Gym</string>
+
     <string name="IngresarUsuario">Ingresar</string>
     <string name="notienecuenta">¿No tienes registro? <b>Registrate aquí</b></string>
     <string name="agenda">Agenda</string>
@@ -59,6 +89,7 @@
         <item>Female</item>
         <item>Other</item>
     </string-array>
+    <string name="mi_about">About</string>
 
     <!-- Prueba para servicios -->
     <string-array name="servicesList">

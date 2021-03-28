@@ -13,13 +13,14 @@
 
     <!-- Para AdminServices-->
     <string name="services_tipo">Seleccione tipo de servicio:</string>
+    <string name="Hola">Hola</string>
 
     <!-- Para AdminAbout-->
     <string name="about_gim">Aca va el nombre del gim</string>
     <string name="about_mision">Misión:</string>
     <string name="about_vision">Visión:</string>
-    <string name="about_content_mision">Agregar información sobre Mision</string>
-    <string name="about_content_vision">Agregar información sobre Vision</string>
+    <string name="about_content_mision">Agregar información sobre Misión</string>
+    <string name="about_content_vision">Agregar información sobre Visión</string>
 
     <!-- Para AdminOffers-->
     <string name="offer_gim">Aca va el nombre del gim</string>
@@ -35,19 +36,33 @@
     <string name="document">Documento de Identidad</string>
     <string name="cellphone">Celular</string>
     <string name="address">Dirección</string>
-    <string name="height">Altura</string>
+    <string name="height">Altura (cm)</string>
     <string name="weight">Peso</string>
     <string name="repeatPassword">Repita la Contraseña</string>
     <string name="gender">Sexo</string>
     <string name="loginUser">Inicio de sesión</string>
     <string name="username">Nombre de usuario</string>
+    <string name="name">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="city">Ciudad</string>
+    <string name="postalCode">Código postal</string>
+    <string name="country">País</string>
+    <string name="phoneNumber">Teléfono</string>
+    <string name="userName">Usuario</string>
+    <string name="status">Estado</string>
+    <string name="comments">Comentarios</string>
+    <string name="birthday">Fecha de nacimiento</string>
+    <string name="selectDate">Fecha de nacimiento</string>
+    <string name="selectGym">Selecciona un gimnasio</string>
+
+
     <string name="IngresarUsuario">Ingresar</string>
     <string name="notienecuenta">¿No tienes registro? <b>Registrate aquí</b></string>
     <string name="agenda">Agenda</string>
     <string name="clientes">Clientes</string>
     <string name="notificaciones">Notificaciones</string>
     <string name="servicios">Servicios</string>
-    <string name="mi_about">About</string>
+    <string name="mi_about">Acerca de mí</string>
     <string name="mi_perfil">Mi Perfil</string>
     <string name="nombregimnasio">Nombre del Gimnasio</string>
     <string name="direccionprincipal">Dirección Principal</string>
