@@ -43,7 +43,7 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
     private Button btnSubmit, dateButton;
     private DatePickerDialog datePickerDialog;
     private Spinner spinner;
-    public String id;
+    private String id;
 
     ProgressDialog progreso;
 
@@ -89,18 +89,15 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-               /* selected_spinner = spinner.getSelectedItem().toString();
-                String userId = userDocument();
-                goToGymList(v, userId);*/
+
                 selected_spinner = spinner.getSelectedItem().toString();
                 String vUserName = vUserName();
-               if (!validateEmail() | !validateUserName() |!validatePassword()  | !validateName() | !validateLastName()| !validateDocument() ) { //| !validateUserName(vUserName)
-                  //  Toast.makeText(getApplicationContext(), "Corrija los datos ingresados.", Toast.LENGTH_LONG).show();
-                }else {
+               if (!validateUserName(vUserName)| !validateEmail() |!validatePassword()  | !validateName() | !validateLastName()| !validateDocument() ) {
+                    Toast.makeText(getApplicationContext(), "Corrija los datos ingresados.", Toast.LENGTH_LONG).show();
+               }else {
                     insertUser();
-                    getLastUserId(v);
-                 //  Toast.makeText(getApplicationContext(), "TA BIEN", Toast.LENGTH_LONG).show();
+                   getLastUserId(v);
+                   Toast.makeText(getApplicationContext(), "TA BIEN", Toast.LENGTH_LONG).show();
                }
 
             }
@@ -357,18 +354,31 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
             return false;
         }
     }
-/*
+
     private boolean validateUserName(String vUserName) {
         String url="http://gymup.zonahosting.net/gymphp/UsernameExistsWS.php?newname=";
+     //   Toast.makeText(getApplicationContext(), vUserName.trim(), Toast.LENGTH_LONG).show();
+        final Boolean[] exists = {false};
 
-        Boolean exists;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url + vUserName.trim(), new Response.Listener<String>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url + vUserName.trim(), new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONArray response) {
                 JSONObject jsonObject = null;
-                Toast.makeText(getApplicationContext(), "Operación exitosa", Toast.LENGTH_LONG).show();
+                try {
+                    jsonObject = response.getJSONObject(0);
+                    String id = jsonObject.optString("id");
+                   // Toast.makeText(getApplicationContext(), id.trim(), Toast.LENGTH_LONG).show();
+                    if (id.equals("")){
+                        exists[0]=true;
 
+                    }else{
+                        exists[0]=false;
+                        etcUsername.setError("El nombre de usuario no está disponible.");
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -376,14 +386,12 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         });
-        if (stringRequest.equals(vUserName)) {
-            return true;
-            etcUsername.setError("Este nombre no está disponible.");
-        } else {
-            return false;
-        }
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+
+        return exists[0];
     }
-*/
+
 
 
 }
