@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bitgymup.gymup">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GYMUP">
         <activity android:name=".users.NewUser">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".users.UserSaludNutricion" />
         <activity android:name=".users.UserPromo" />
@@ -37,17 +33,20 @@
         <activity android:name=".admin.AdminNews" />
         <activity android:name=".admin.AdminProfile" />
         <activity android:name=".admin.AdminHome" />
-        <activity android:name=".Register" />
+        <activity android:name=".users.UserRegister" >
+        </activity>
         <activity android:name=".users.UserProfile" />
         <activity android:name=".Nutrition" />
         <activity android:name=".Contact" />
         <activity android:name=".Services" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".GymList" >
-
-        </activity>
+        <activity android:name=".GymList" />
         <activity android:name=".LogIn">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
 

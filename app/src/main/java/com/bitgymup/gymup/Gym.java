@@ -2,31 +2,31 @@ package com.bitgymup.gymup;
 
 import android.widget.ImageView;
 
-public class Gym {
-    private int idgym;
+import java.io.Serializable;
+
+public class Gym implements Serializable {
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;
     private String mobileNumber;
-    private int rut;
+    private String rut;
     //private ImageView logo;
 
 
-    public Gym(int idgym, String name, String email, String phoneNumber, String mobileNumber, int rut) {
-        this.idgym = idgym;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+    public Gym(String id, String name, String email, String phoneNumber, String mobileNumber, String rut) {
+        this.id           = id;
+        this.name         = name;
+        this.email        = email;
+        this.phoneNumber  = phoneNumber;
         this.mobileNumber = mobileNumber;
-        this.rut = rut;
+        this.rut          = rut;
     }
 
-    public int getIdgym() {
-        return idgym;
-    }
+    public String getId() {return id;}
 
-    public void setIdgym(int idgym) {
-        this.idgym = idgym;
+    public void setId(String idgym) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,11 +61,11 @@ public class Gym {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getRut() {
+    public String getRut() {
         return rut;
     }
 
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
 }

@@ -207,6 +207,4 @@ public class AdminProfile extends AppCompatActivity {
         AdminHome.closeDrawer(drawerLayout);
     }
 
-
-
 }

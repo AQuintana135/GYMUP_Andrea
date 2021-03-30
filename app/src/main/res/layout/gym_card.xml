@@ -53,7 +53,7 @@
                     android:id="@+id/tvGymName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                     android:paddingLeft="10dp"
                     android:textStyle="bold"
                     android:text="NOMBRE GIMNASIO"/>
@@ -61,18 +61,26 @@
                     android:id="@+id/tvGymAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                     android:paddingLeft="10dp"
                     android:textAlignment="center"
                     android:text="Calle Imaginaria 1324"
                     />
                 <TextView
                     android:id="@+id/tvGymPhone"
-                    android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                     android:paddingLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="096123456"
+                    />
+                <TextView
+                    android:id="@+id/tvGymEmail"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="hola@gmail.com"
                     />
             </LinearLayout>
         </RelativeLayout>

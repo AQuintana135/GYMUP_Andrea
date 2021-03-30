@@ -34,10 +34,11 @@ import java.util.Calendar;
 
 public class NewUser extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private EditText etName, etSurname, etDocument, etAddress, etCity, etPostalcode, etCountry, etPhone, etEmail, etMobile, etHeight, etWeight, etcUsername, etcPassword, etStatus, etComments, etBirthday, etGender;
+    private EditText etName, etSurname, etDocument, etAddress, etCity, etCountry, etPhone, etEmail, etMobile, etHeight, etWeight, etcUsername, etcPassword, etStatus, etComments, etBirthday, etGender;
     private String selectedGender, selectedDate, selected_spinner;
     private Button btnSubmit, dateButton;
     private DatePickerDialog datePickerDialog;
+    private Spinner spinner;
 
     ProgressDialog progreso;
 
@@ -51,20 +52,17 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
-        initDatePicker();
         dateButton = findViewById(R.id.btnSelectDate);
         dateButton.setText(getTodaysDate());
         //Para elegir la fecha
-
+        initDatePicker();
 
         //Code de los spinners para combo
-        Spinner spinner = findViewById(R.id.spnGender);
+
+        spinner = findViewById(R.id.spnGender);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genderList, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-        selected_spinner = spinner.getSelectedItem().toString();
- //       selected_spinner = spinner.getSelectedItem().toString();
 
 
         etName       = findViewById(R.id.etName);
@@ -76,14 +74,10 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
         etcPassword  = findViewById(R.id.etcPassword);
         etEmail      = findViewById(R.id.etEmail);
         etMobile     = findViewById(R.id.etMobile);
-        etPostalcode = findViewById(R.id.etPostalcode);
         etCountry    = findViewById(R.id.etCountry);
         etPhone      = findViewById(R.id.etPhone);
         etAddress    = findViewById(R.id.etAddress);
         etCity       = findViewById(R.id.etCity);
-        etGender     = findViewById(R.id.etGender);
-        etStatus     = findViewById(R.id.etStatus);
-        etComments   = findViewById(R.id.etComments);
 
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         request = Volley.newRequestQueue(this);
@@ -91,79 +85,79 @@ public class NewUser extends AppCompatActivity implements AdapterView.OnItemSele
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //cargarWebService();
-
-                    Intent selectGym = new Intent(getApplicationContext(), GymList.class);
-                    startActivity(selectGym);
-
-            }
-
-            private void cargarWebService() {
-
-                progreso= new ProgressDialog(NewUser.this);
-                progreso.setMessage("Cargando...");
-                progreso.show();
-
-                String url = "http://gymup.zonahosting.net/gymphp/RegistroClientsWS.php?name=" + etName.getText().toString()+
-                        "&surname="+etSurname.getText().toString()+
-                        "&document="+etDocument.getText().toString()+
-                        "&address="+etAddress.getText().toString()+
-                        "&city="+etCity.getText().toString()+
-                        "&postalcode="+etPostalcode.getText().toString()+
-                        "&country="+etCountry.getText().toString()+
-                        "&phone="+etPhone.getText().toString()+
-                        "&email="+etEmail.getText().toString()+
-                        "&mobile="+etMobile.getText().toString()+
-                        "&gender="+selected_spinner.toString()+
-                        "&height="+etHeight.getText().toString()+
-                        "&weight="+etWeight.getText().toString()+
-                        "&cusername="+etcUsername.getText().toString()+
-                        "&cpassword="+etcPassword.getText().toString()+
-                        "&status="+etStatus.getText().toString()+
-                        "&comments="+selectedDate.toString();
-
-                jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                progreso.hide();
-                                Toast.makeText(getApplicationContext(),"Exito al guardar :) "+ response.toString(), Toast.LENGTH_LONG).show();
-                                etName.setText(" ");
-                                etSurname.setText(" ");
-                                etDocument.setText(" ");
-                                etAddress.setText(" ");
-                                etCity.setText(" ");
-                                etPostalcode.setText(" ");
-                                etCountry.setText(" ");
-                                etPhone.setText(" ");
-                                etEmail.setText(" ");
-                                etMobile.setText(" ");
-                                etGender.setText(" ");
-                                etHeight.setText(" ");
-                                etWeight.setText(" ");
-                                etcUsername.setText(" ");
-                                etcPassword.setText(" ");
-                                etStatus.setText(" ");
-                                etComments.setText(" ");
-                                etBirthday.setText(" ");
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progreso.hide();
-                        Toast.makeText(getApplicationContext(),"Error :( "+error.toString(), Toast.LENGTH_SHORT).show();
-                        Log.i("Error",error.toString());
-
-                    }
-                });
-                request.add(jsonObjectRequest);
+                //
+                selected_spinner = spinner.getSelectedItem().toString();
+                cargarWebService();
+                Intent selectGym = new Intent(getApplicationContext(), GymList.class);
+                startActivity(selectGym);
 
             }
+
+
 
         });
 
     }
 
+
+    private void cargarWebService() {
+
+        progreso= new ProgressDialog(NewUser.this);
+        progreso.setMessage("Cargando...");
+        progreso.show();
+
+        String url = "http://gymup.zonahosting.net/gymphp/RegistroClientsWS.php?name=" + etName.getText().toString()+
+                "&surname="+etSurname.getText().toString()+
+                "&document="+etDocument.getText().toString()+
+                "&address="+etAddress.getText().toString()+
+                "&city="+etCity.getText().toString()+
+                "&birthday="+selectedDate+
+                "&country="+etCountry.getText().toString()+
+                "&phone="+etPhone.getText().toString()+
+                "&email="+etEmail.getText().toString()+
+                "&mobile="+etMobile.getText().toString()+
+                "&gender="+selected_spinner+
+                "&height="+etHeight.getText().toString()+
+                "&weight="+etWeight.getText().toString()+
+                "&cusername="+etcUsername.getText().toString()+
+                "&cpassword="+etcPassword.getText().toString();
+
+        url = url.replace(" ","%20");
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        progreso.hide();
+                        Toast.makeText(getApplicationContext(),"Exito al guardar :) "+ response.toString(), Toast.LENGTH_LONG).show();
+                        etName.setText(" ");
+                        etSurname.setText(" ");
+                        etDocument.setText(" ");
+                        etAddress.setText(" ");
+                        etCity.setText(" ");
+                        etCountry.setText(" ");
+                        etPhone.setText(" ");
+                        etEmail.setText(" ");
+                        etMobile.setText(" ");
+                        etHeight.setText(" ");
+                        etWeight.setText(" ");
+                        etcUsername.setText(" ");
+                        etcPassword.setText(" ");
+
+                        etBirthday.setText(" ");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progreso.hide();
+                Toast.makeText(getApplicationContext(),"Error :( "+error.toString(), Toast.LENGTH_SHORT).show();
+                Log.i("Error",error.toString());
+
+            }
+        });
+        request.add(jsonObjectRequest);
+
+    }
     //para el Spinner
     @Override
     public void onItemSelected(AdapterView<?> adapter, View view, int position, long l) {

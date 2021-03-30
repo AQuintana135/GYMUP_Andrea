@@ -18,12 +18,17 @@ public class GymListAdapter extends RecyclerView.Adapter<GymListAdapter.ViewHold
     private List<Gym> mData;
     private LayoutInflater mInflater;
     private Context context;
+    final GymListAdapter.OnItemClickListener listener;
 
-    public GymListAdapter(List<Gym> itemList, Context context){
+    public interface OnItemClickListener{
+        void onItemClick(Gym item);
+    }
+
+    public GymListAdapter(List<Gym> itemList, Context context, GymListAdapter.OnItemClickListener listener){
         this.mInflater = LayoutInflater.from(context);
         this.context   = context;
         this.mData     = itemList;
-
+        this.listener  = listener;
     }
 
     @Override
@@ -45,18 +50,26 @@ public class GymListAdapter extends RecyclerView.Adapter<GymListAdapter.ViewHold
     public void setItems(List<Gym> items){ mData = items;}
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView name, phoneNumber;
+        public TextView name, phoneNumber, email;
 
         ViewHolder(View itemView){
             super(itemView);
             name        = itemView.findViewById(R.id.tvGymName);
             phoneNumber = itemView.findViewById(R.id.tvGymPhone);
+            email       = itemView.findViewById(R.id.tvGymEmail);
 
         }
 
         void bindData(final Gym item){
             name.setText(item.getName());
             phoneNumber.setText(item.getPhoneNumber());
+            email.setText(item.getEmail());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    listener.onItemClick(item);
+                }                                        }
+            );
         }
 
     }
