@@ -48,7 +48,7 @@ public class GymList extends AppCompatActivity implements Response.Listener<JSON
         userId  = getIntent().getStringExtra("userId");
         request = Volley.newRequestQueue(this);
         loadWebService(url);
-     //  loadGym();
+      //  loadGym();
 
     }
 
@@ -85,7 +85,7 @@ public class GymList extends AppCompatActivity implements Response.Listener<JSON
                                 // acá cargo el webservice
 
                                 insertWebService(item.getId(), userId.trim());
-                               // Toast.makeText(getApplicationContext(),"Gimnasio seleccionado "+ item.getName() , Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(getApplicationContext(),"Gimnasio seleccionado "+ item.getName() , Toast.LENGTH_SHORT).show();
 
                                 Intent goLogIn = new Intent(getApplicationContext(), LogIn.class);
                                 startActivity(goLogIn);

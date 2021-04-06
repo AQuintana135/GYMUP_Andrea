@@ -56,6 +56,11 @@
     <string name="selectDate">Date of Birth</string>
     <string name="selectGym">Select Gym</string>
 
+    <!--Para el perfil del usuario -->
+    <string name="editProfile">Edit Profile</string>
+    <string name="updateData">Update data</string>
+    <string name="editPassword">Edit password</string>
+
     <string name="IngresarUsuario">Ingresar</string>
     <string name="notienecuenta">¿No tienes registro? <b>Registrate aquí</b></string>
     <string name="agenda">Agenda</string>

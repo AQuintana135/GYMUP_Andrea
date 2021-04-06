@@ -9,14 +9,14 @@
     <application
         android:allowBackup="true"
         android:allowClearUserData="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/logo_circular"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/logo_circular"
         android:supportsRtl="true"
         android:theme="@style/Theme.GYMUP">
-        <activity android:name=".users.NewUser">
-        </activity>
+        <activity android:name=".users.EditUserProfile"></activity>
+        <activity android:name=".users.NewUser"></activity>
         <activity android:name=".users.UserSaludNutricion" />
         <activity android:name=".users.UserPromo" />
         <activity android:name=".users.UserSalud" />
@@ -33,9 +33,9 @@
         <activity android:name=".admin.AdminNews" />
         <activity android:name=".admin.AdminProfile" />
         <activity android:name=".admin.AdminHome" />
-        <activity android:name=".users.UserRegister" >
+        <activity android:name=".users.UserRegister"></activity>
+        <activity android:name=".users.UserProfile">
         </activity>
-        <activity android:name=".users.UserProfile" />
         <activity android:name=".Nutrition" />
         <activity android:name=".Contact" />
         <activity android:name=".Services" />
@@ -50,13 +50,11 @@
         </activity>
         <activity android:name=".MainActivity" />
 
-        <service
-            android:name=".admin.MyFirebaseInstanceIDService">
-
+        <service android:name=".admin.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
+
 </manifest>

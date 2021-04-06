@@ -92,16 +92,16 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
 
                 selected_spinner = spinner.getSelectedItem().toString();
                 String vUserName = vUserName();
-               if (!validateUserName(vUserName)| !validateEmail() |!validatePassword()  | !validateName() | !validateLastName()| !validateDocument() ) {
+              //  Toast.makeText(getApplicationContext(), "Username: " + vUserName , Toast.LENGTH_LONG).show();
+               if (!validateUserName()| !validateEmail() | !validatePassword()  | !validateName() | !validateLastName()| !validateDocument() | validateUserNameUnique(vUserName)) {
                     Toast.makeText(getApplicationContext(), "Corrija los datos ingresados.", Toast.LENGTH_LONG).show();
                }else {
-                    insertUser();
-                   getLastUserId(v);
-                   Toast.makeText(getApplicationContext(), "TA BIEN", Toast.LENGTH_LONG).show();
+                  insertUser();
+                  getLastUserId(v);
+                //  Toast.makeText(getApplicationContext(), "TA BIEN", Toast.LENGTH_LONG).show();
                }
 
             }
-
 
         });
 
@@ -113,7 +113,7 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
         progreso.setMessage("Cargando...");
         progreso.show();
 
-        String url = "http://gymup.zonahosting.net/gymphp/RegistroClientsWS.php?name=" + etName.getText().toString() +
+        String url = "http://gymup.zonahosting.net/gymphp/RegistroClientsWS2.php?name=" + etName.getText().toString() +
                 "&surname="   + etSurname.getText().toString() +
                 "&document="  + etDocument.getText().toString() +
                 "&address="   + etAddress.getText().toString() +
@@ -355,7 +355,7 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
         }
     }
 
-    private boolean validateUserName(String vUserName) {
+    private boolean validateUserNameUnique(String vUserName) {
         String url="http://gymup.zonahosting.net/gymphp/UsernameExistsWS.php?newname=";
      //   Toast.makeText(getApplicationContext(), vUserName.trim(), Toast.LENGTH_LONG).show();
         final Boolean[] exists = {false};
@@ -369,10 +369,11 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
                     String id = jsonObject.optString("id");
                    // Toast.makeText(getApplicationContext(), id.trim(), Toast.LENGTH_LONG).show();
                     if (id.equals("")){
-                        exists[0]=true;
-
+                        exists[0] = true;
+                        etcUsername.setError(null);
+                      //  Toast.makeText(getApplicationContext(), "nombre disponible", Toast.LENGTH_LONG).show();
                     }else{
-                        exists[0]=false;
+                        exists[0] = false;
                         etcUsername.setError("El nombre de usuario no está disponible.");
                     }
 

@@ -12,6 +12,18 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/etcUsernameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- EditText con Material Design -->
         <LinearLayout
@@ -25,7 +37,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etNameEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -38,7 +50,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etSurname"
+                    android:id="@+id/etSurnameEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -50,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/etDocument"
+                android:id="@+id/etDocumentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -67,7 +79,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etHeight"
+                    android:id="@+id/etHeightEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -80,7 +92,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etWeight"
+                    android:id="@+id/etWeightEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
@@ -93,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <TextView
-                android:id="@+id/etBirthday"
+                android:id="@+id/etBirthdayEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -114,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/etAddress"
+                android:id="@+id/etAddressEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
@@ -133,7 +145,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etCity"
+                    android:id="@+id/etCityEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -146,7 +158,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etCountry"
+                    android:id="@+id/etCountryEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -165,7 +177,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etPhone"
+                    android:id="@+id/etPhoneEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -177,7 +189,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="20dp">
                 <EditText
-                    android:id="@+id/etMobile"
+                    android:id="@+id/etMobileEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -190,68 +202,25 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etEmailEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="@string/email"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Spinner
-            android:id="@+id/spnGender"
+            android:id="@+id/spnGenderEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-            <EditText
-                android:id="@+id/etcUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/userName"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/etcPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/password"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/etRepeatPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/repeatPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
         <!-- Btn - Guardar -->
         <Button
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnUpdateData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/register2" />
+            android:text="@string/updateData" />
 
     </LinearLayout>
 

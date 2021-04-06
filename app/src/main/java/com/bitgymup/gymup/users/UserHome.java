@@ -6,20 +6,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bitgymup.gymup.R;
 
 public class UserHome extends AppCompatActivity {
     //Inicializar las variables
     DrawerLayout drawerLayout;
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
+
+        SharedPreferences userId1 = getSharedPreferences("user_login", Context.MODE_PRIVATE);
+        username = userId1.getString("username", "");
+
         //Asignación de la variable
         drawerLayout = findViewById(R.id.drawer_layout);
     }
@@ -69,9 +78,7 @@ public class UserHome extends AppCompatActivity {
     public void ClickPromoU(View view){
         redirectActivity(this, UserPromo.class);
     }
-    public void ClickMyProfileU(View view){
-        redirectActivity(this, UserProfile.class);
-    }
+    public void ClickMyProfileU(View view){redirectActivity(this, UserProfile.class);}
     public void ClickLogout(View view){
         //Close APP
         salir(this);
