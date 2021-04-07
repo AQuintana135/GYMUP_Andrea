@@ -42,7 +42,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     private EditText etName, etSurname, etDocument, etAddress, etCity, etCountry, etPhone, etEmail, etMobile, etHeight, etWeight, etBirthday, etGender;
     private TextView etcUsername;
     private String selectedGender, selectedDate, selected_spinner, username;
-    private Button btnSubmit, dateButton, btnUpdateData;
+    private Button dateButton, btnUpdateData;
     private DatePickerDialog datePickerDialog;
     private Spinner spinner;
     private String id, url;
@@ -73,26 +73,23 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
         etAddress     = findViewById(R.id.etAddressEdit);
         etCity        = findViewById(R.id.etCityEdit);
         btnUpdateData = findViewById(R.id.btnUpdateData);
+        dateButton    = findViewById(R.id.btnSelectDateEdit);
+
 
         SharedPreferences userId1 = getSharedPreferences("user_login", Context.MODE_PRIVATE);
         username = userId1.getString("username", "");
         etcUsername.setText(username);
-
-        spinner = findViewById(R.id.spnGenderEdit);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genderList, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
         loadUserData(username);
 
         //Para elegir la fecha
-      // initDatePicker();
+        // initDatePicker();
 
         btnUpdateData.setOnClickListener(new View.OnClickListener(){
                  @Override
                  public void onClick(View v) {
+                     selected_spinner = spinner.getSelectedItem().toString();
                      if (!validateEmail() | !validateName() | !validateLastName()| !validateDocument()) {
-                        // Toast.makeText(getApplicationContext(), "Corrija los datos ingresados.", Toast.LENGTH_LONG).show();
+                         // Toast.makeText(getApplicationContext(), "Corrija los datos ingresados.", Toast.LENGTH_LONG).show();
                      }else {
                          updateProfileData(v, username);
                          goToUserProfile(v);
@@ -152,8 +149,18 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
                     etHeight.setText(height);
                     etWeight.setText(weight);
                     etcUsername.setText(username);
-                   // etGender.setText(gender);
-                   // dateButton.setText(getBirthdayDate(birthday));
+
+                    spinner = findViewById(R.id.spnGenderEdit);
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.genderList, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    int i = adapter.getPosition(gender);
+
+                    Log.d("msg", gender);
+                    spinner.setAdapter(adapter);
+                    spinner.setSelection(i);
+                    //Para elegir la fecha
+                    dateButton.setText(getBirthdayDate(birthday));
+                    initDatePicker(birthday);
                     progreso.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -178,12 +185,12 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
 
         String url = "http://gymup.zonahosting.net/gymphp/client_update.php?user="+ username +
                 "&address="     + etAddress.getText().toString() +
-               // "&cliBirthday=" + selectedDate +
+                "&cliBirthday=" + selectedDate +
                 "&cliCity="     + etCity.getText().toString() +
                 "&cliCountry="  + etCountry.getText().toString() +
                 "&cliDocument=" + etDocument.getText().toString() +
                 "&cliEmail="    + etEmail.getText().toString() +
-               // "&cliGender="   + selected_spinner +
+                "&cliGender="   + selected_spinner +
                 "&cliHeight="   + etHeight.getText().toString() +
                 "&cliMobile="   + etMobile.getText().toString() +
                 "&cliName="     + etName.getText().toString() +
@@ -218,7 +225,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> adapter, View view, int position, long l) {
         String selectedGender = adapter.getItemAtPosition(position).toString();
-       // Toast.makeText(adapter.getContext(), selectedGender, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(adapter.getContext(), selectedGender, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -227,21 +234,20 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     }
 
     //Para la seleccion de fecha
- /*   private String getBirthdayDate(String birthday)
+    private String getBirthdayDate(String birthday)
     {
         String[] parts = birthday.split("-");
-        String year2  = parts[0]; //
-        String month2 = parts[1]; //
-        String day2   = parts[2];
-        Calendar cal = Calendar.getInstance();
-        int year = Integer.parseInt(year2);
-        int month = Integer.parseInt(month2);
-     //   month = month + 1;
-        int day = Integer.parseInt(day2);
+        String part1 = parts[0]; //year
+        String part2 = parts[1]; //month
+        String part3 = parts[2]; //day
+
+        int year  = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2);
+        int day   = Integer.parseInt(part3);
         return makeDateString(day, month, year);
     }
 
-    private void initDatePicker() {
+    private void initDatePicker(String birthday) {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -254,15 +260,19 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
             }
         };
 
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String[] parts = birthday.split("-");
+        String part1 = parts[0]; //year
+        String part2 = parts[1]; //month
+        String part3 = parts[2]; //day
 
-       int style = AlertDialog.THEME_HOLO_LIGHT;
+        int year  = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2);
+        int day   = Integer.parseInt(part3);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-       datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
    }
 
     private String makeDateString(int day, int month, int year)
@@ -304,7 +314,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
-    }*/
+    }
 
     //Validar campos
     private boolean validateName() {

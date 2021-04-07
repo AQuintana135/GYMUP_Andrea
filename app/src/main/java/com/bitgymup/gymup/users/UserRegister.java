@@ -183,6 +183,7 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
 
 
     }
+
     //para el Spinner
     @Override
     public void onItemSelected(AdapterView<?> adapter, View view, int position, long l) {
@@ -198,7 +199,7 @@ public class UserRegister<userId> extends AppCompatActivity implements AdapterVi
 
 
     private String vUserDocument() {
-        etDocument = findViewById(R.id.etDocument);
+        etDocument = findViewById(R.id.etDocumentEdit);
         return etDocument.getText().toString();
     }
     private String vUserName() {

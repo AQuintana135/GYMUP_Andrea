@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity  {
@@ -48,6 +49,7 @@ public class UserProfile extends AppCompatActivity  {
     private TextView tvUserEmail, tvUserPhone, tvUserCompleteName, tvUserIMC, tvUserHeight, tvUserWeight;
     private RequestQueue request;
     ProgressDialog progreso;
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
 
 
@@ -86,7 +88,8 @@ public class UserProfile extends AppCompatActivity  {
               @Override
               public void onClick(View v) {
                   //Toast.makeText(getApplicationContext(), "BOTON" , Toast.LENGTH_LONG).show();
-                  ClickEditPassword(v);
+                  Intent editPassword = new Intent(getApplicationContext(), UserUpdatePassword.class);
+                  startActivity(editPassword);
               }
           }
         );
@@ -120,7 +123,6 @@ public class UserProfile extends AppCompatActivity  {
                         String completeName = name.trim() + " " + surname.trim();
 
                         tvUserCompleteName.setText(completeName);
-                       // tvUserIMC.setText(imc);
                         tvUserHeight.setText(height);
                         tvUserWeight.setText(weight);
                         tvUserEmail.setText(email);
@@ -200,13 +202,7 @@ public class UserProfile extends AppCompatActivity  {
         startActivity(editProfile);
     }
 
-    public void ClickEditPassword(View view){
-        // Intent editProfile = new Intent(this, EditUserProfile.class);
-        // startActivity(editProfile);
-        Toast.makeText(getApplicationContext(), "**En construcción**", Toast.LENGTH_LONG).show();
-    }
-
-    /*Fin de los LINKS*/
+     /*Fin de los LINKS*/
 
 
     public static void salir(Activity activity) {
