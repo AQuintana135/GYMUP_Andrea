@@ -150,6 +150,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
                     etWeight.setText(weight);
                     etcUsername.setText(username);
 
+                    selectedDate = birthday;
                     spinner = findViewById(R.id.spnGenderEdit);
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.genderList, android.R.layout.simple_spinner_item);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -252,7 +253,7 @@ public class EditUserProfile extends AppCompatActivity implements AdapterView.On
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 {
-                    month = month + 1;
+                   // month = month + 1;
                     String date = makeDateString(day, month, year);
                     dateButton.setText(date);
                     selectedDate = year + "-" + month + "-" + day;
